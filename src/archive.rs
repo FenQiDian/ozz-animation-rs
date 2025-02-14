@@ -105,7 +105,7 @@ impl Archive<Cursor<Vec<u8>>> {
     pub fn from_path(path: &str) -> Result<Archive<Cursor<Vec<u8>>>, OzzError> {
         match crate::nodejs::read_file(path) {
             Ok(buf) => Archive::from_vec(buf),
-            Err(err) => Err(OzzError::Custom(Box::new(err.as_string().unwrap_or("".into())))),
+            Err(_) => Err(OzzError::Unexcepted),
         }
     }
 }
